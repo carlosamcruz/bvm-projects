@@ -1,0 +1,10 @@
+Para executar um único aquivo de testes:
+
+adicionar em package.json o seguinte script:
+    "test:one": "mocha --no-config -r ts-node/register"
+
+executar:
+npm run test:one -- ./tests/helloworld00.test.ts
+
+Para os testes, usaremos o seguinte aquivo de providers:
+    ../helloworld/src/mProviders.ts

@@ -1,0 +1,58 @@
+Download Bitcoin SV Node
+GitHub – bitcoin-sv/bitcoin-sv
+
+git clone https://github.com/bitcoin-sv/bitcoin-sv.git
+
+
+https://download.bitcoinsv.io/bitcoinsv/
+https://download.bitcoinsv.io/bitcoinsv/1.1.0/
+
+for Linux:
+bitcoin-sv-1.1.0-x86_64-linux-gnu.tar.gz
+
+
+wget https://download.bitcoinsv.io/bitcoinsv/bitcoin-sv-1.1.0-x86_64-linux-gnu.tar.gz
+tar -xvf bitcoin-sv-1.1.0-x86_64-linux-gnu.tar.gz
+cd BSVNODE/bitcoin-sv-1.1.0-x86_64-linux-gnu/bitcoin-sv-1.1.0/bin
+
+# Start node in regtest mode (local test mode)
+./bitcoind -regtest -daemon \
+  -excessiveblocksize=0 \
+  -maxstackmemoryusageconsensus=0 \
+  -minminingtxfee=0
+
+./bitcoind -regtest -daemon \
+  -excessiveblocksize=0 \
+  -maxstackmemoryusageconsensus=0 \
+  -minminingtxfee=0 \
+  -rpcuser=user \
+  -rpcpassword=pass \
+  -rpcport=18332 \
+  -rpcallowip=127.0.0.1
+
+
+./bitcoin-cli -regtest stop
+
+# Create wallet
+./bitcoin-cli -regtest createwallet "test"
+
+# Generate test blocks
+./bitcoin-cli -regtest generate 101
+
+
+Start in Regtest Mode:
+
+bash
+Copy
+./bitcoind -regtest -daemon
+Generate Blocks Instantly:
+You can "mine" blocks instantly (without PoW) for testing:
+
+bash
+Copy
+bitcoin-cli -regtest generate 101
+This creates 101 blocks with coinbase rewards you can spend.
+
+Use RPC to Interact:
+You can create wallets, send txs, inspect UTXOs, etc.
+
