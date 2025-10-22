@@ -1,0 +1,12 @@
+npx scrypt-cli project 002counter
+cd 002counter
+npm install
+npx scrypt-cli@latest compile
+
+
+Criar no package.json o 
+
+script - "test:one": "mocha --no-config -r ts-node/register"
+script - "test:one": "mocha --no-config -r ts-node/register --timeout 40000"
+
+npm run test:one -- ./tests/counter.test.ts
