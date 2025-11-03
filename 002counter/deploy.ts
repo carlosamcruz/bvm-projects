@@ -1,10 +1,12 @@
-import { 002counter } from './src/contracts/002counter'
+import { Counter } from './src/contracts/counter'
 import {
     bsv,
     TestWallet,
     DefaultProvider,
     sha256,
     toByteString,
+    PubKeyHash,
+    toHex,
 } from 'scrypt-ts'
 
 import * as dotenv from 'dotenv'
@@ -31,15 +33,16 @@ const signer = new TestWallet(
 )
 
 async function main() {
-    await 002counter.loadArtifact()
+    await Counter.loadArtifact()
 
     // TODO: Adjust the amount of satoshis locked in the smart contract:
     const amount = 1
 
-    const instance = new 002counter(
-        // TODO: Adjust constructor parameter values:
-        sha256(toByteString('hello world', true))
+    let owner = PubKeyHash(
+        toHex(bsv.Address.fromString(signer.addresses[0]).hashBuffer)
     )
+    
+    const instance = new Counter(owner, 3n)
 
     // Connect to a signer.
     await instance.connect(signer)

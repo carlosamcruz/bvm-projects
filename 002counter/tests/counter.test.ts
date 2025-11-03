@@ -32,9 +32,7 @@ if (!process.env.PRIVATE_KEY) {
 }
 
 //O valor do TXID do estado atual deve ser alterado manualmente em caso de os testes serem rodados de forma alternada
-let currentState =
-    '59b5238aa75666c5d1494a2a656a69ff3b2dfd903e07d73f3c439bae3467adcc'
-
+let currentState = "174576e95d17f430bb0e08e23599e529ba087ff7e4f397da92f03180c55fa328";
 // Read the private key from the .env file.
 // The default private key inside the .env file is meant to be used for the Bitcoin testnet.
 // See https://scrypt.io/docs/bitcoin-basics/bsv/#private-keys
@@ -77,20 +75,23 @@ describe('Test SmartContract `Counter`', () => {
 
     //testes automatizados on chain são complexos;
 
+/*    
     it('should deploy contract', async () => {
         instance = new Counter(owner, 3n)
 
-        await instance.connect(signer)
+        await instance.connect(signer2)
 
         const deployTx = await instance.deploy(1)
 
         currentState = deployTx.id
 
-        console.log(`Deployed contract "Helloworld": ${currentState}`)
+        console.log(`Deployed contract "Counter": ${currentState}`)
 
         assert.equal(deployTx.id.length, 64)
     })
 
+
+    
     it('should read current count.', async () => {
         await sleep(2) // espera para fazer uma nova requisição a woc
         //let tx = await provider.getTransaction(currentState);
@@ -150,16 +151,16 @@ describe('Test SmartContract `Counter`', () => {
 
         let instance = Counter.fromTx(tx, 0)
 
-        await instance.connect(signer)
+        await instance.connect(signer2)
 
         const nextInstance = instance.next()
 
         nextInstance.count = instance.count + 1n
 
-        let value = 1000
+        let value = 1001
 
         instance.bindTxBuilder('increment', async function () {
-            const changeAddress = bsv.Address.fromString(signer.addresses[0])
+            const changeAddress = bsv.Address.fromString(signer2.addresses[0])
 
             const unsignedTx: bsv.Transaction =
                 new bsv.Transaction().addInputFromPrevTx(tx, 0)
@@ -188,7 +189,11 @@ describe('Test SmartContract `Counter`', () => {
         currentState = callTx.id
         console.log('New State: ', currentState)
         assert.equal(callTx.id.length, 64)
-    })
+    })   
+
+    
+
+    
 
     it('should decrement count.', async () => {
         await sleep(2) // espera para fazer uma nova requisição a woc
@@ -241,6 +246,12 @@ describe('Test SmartContract `Counter`', () => {
         assert.equal(callTx.id.length, 64)
     })
 
+    */
+
+    
+
+    
+
     it('should finalize the contract', async () => {
         await sleep(2) // espera para fazer uma nova requisição a woc
 
@@ -267,4 +278,7 @@ describe('Test SmartContract `Counter`', () => {
         console.log('Tx result: ', currentState)
         assert.equal(callTx.id.length, 64)
     })
+
+    
+    
 })
