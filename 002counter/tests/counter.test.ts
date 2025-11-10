@@ -75,7 +75,7 @@ describe('Test SmartContract `Counter`', () => {
 
     //testes automatizados on chain são complexos;
 
-/*    
+    
     it('should deploy contract', async () => {
         instance = new Counter(owner, 3n)
 
@@ -90,7 +90,7 @@ describe('Test SmartContract `Counter`', () => {
         assert.equal(deployTx.id.length, 64)
     })
 
-
+/*
     
     it('should read current count.', async () => {
         await sleep(2) // espera para fazer uma nova requisição a woc
@@ -246,11 +246,6 @@ describe('Test SmartContract `Counter`', () => {
         assert.equal(callTx.id.length, 64)
     })
 
-    */
-
-    
-
-    
 
     it('should finalize the contract', async () => {
         await sleep(2) // espera para fazer uma nova requisição a woc
@@ -279,6 +274,7 @@ describe('Test SmartContract `Counter`', () => {
         assert.equal(callTx.id.length, 64)
     })
 
+    */   
     
     
 })
