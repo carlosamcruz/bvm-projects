@@ -32,6 +32,9 @@ function InsertKey() {
       setdeptxid("Done!!!")
 
       homepvtKey = msg.current.value;
+      
+      let privateKey = bsv.PrivateKey.fromHex(homepvtKey, homenetwork)
+      privateKey.compAdd(false);
 
     }
   };
